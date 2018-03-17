@@ -13,7 +13,6 @@ int main()
         f++;
         massiv[i]=f;
         smeshenie[i]=f;
-        //cout << massiv[i]<<endl;
     };
 
     cout << "Введите смещение (положительное число) "<<endl;

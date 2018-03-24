@@ -1,0 +1,60 @@
+//Задача: Найти в массиве два наименьших элемента
+
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+int massiv [100],MIN1,MIN2,MAX=0;
+
+
+int main()
+{
+    for (int i =0; i<99; i+=2)
+    {
+        massiv[i]=rand() %1000;
+        massiv [i+1] = (-1)*rand() %1000;
+        if (massiv[i]>MAX)
+        {
+            MAX=massiv[i];
+        };
+        if (massiv [i+1]>MAX)
+        {
+            MAX=massiv[i+1];
+        }
+    };
+    MIN1=massiv[0];
+    MIN2=massiv[0];
+
+    for (int i =0; i<100; i++)
+    {
+        if (massiv[i]<=MIN1)
+        {
+            MIN1=massiv[i];
+        }
+    };
+    for (int i = 0; i<100; i++)
+    {
+        if (massiv[i]==MIN1)
+        {
+            massiv[i]=MAX;
+            break;
+        };
+    };
+    for (int i =0; i<100; i++)
+    {
+        if (massiv[i]<MIN2)
+        {
+            MIN2 = massiv [i];
+        };
+    };
+    for (int i = 0; i<100; i++)
+    {
+        if (massiv[i]==MIN2)
+        {
+            massiv[i]=MAX;
+            break;
+        };
+    };
+    cout<<MIN1<<endl<<MIN2<<endl;
+    return 0;
+}

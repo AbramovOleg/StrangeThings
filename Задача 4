@@ -1,0 +1,52 @@
+// Задача: Сжать массив, удалив из него все элементы, величина которых находится в интервале (a,b)(a,b задаются пользователем)
+//После удаления заменить их нулями и сдвинуть массив
+
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+int massiv [100],a,b,cot;
+
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    for (int i =0; i<99; i+=2)
+    {
+        massiv[i]=rand() %1000;
+        massiv [i+1] = (-1)*rand() %1000;
+    };
+    cout <<"Введите левый край интервала"<<endl;
+    cin >> a;
+    cout<<"Введите правый край интервала"<<endl;
+    cin >>b;
+
+    for (int i = 0; i<100; i++)
+    {
+        if (massiv[i]<b&&massiv[i]>a)
+        {
+            massiv[i]=1001;
+        };
+    };
+    do
+    {
+        cot=0;
+    for (int i =0; i<99;i++)
+    {
+        if (massiv[i+1]==1001&&massiv[i]!=1001)
+        {
+            massiv[i+1]=massiv[i];
+            massiv[i]=1001;
+            cot++;
+        }
+        //cout <<"cot = "<<cot<<endl<<"i = "<<i<<endl;
+    };
+    } while (cot !=0);
+
+    for (int i =0; i<100; i++)
+    {
+        cout <<massiv[i]<<endl;
+    };
+
+    return 0;
+}

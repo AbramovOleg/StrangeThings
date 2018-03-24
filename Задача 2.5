@@ -1,0 +1,55 @@
+//Задача: Заполнить массив случайными числами в диапазоне от -1000 до 1000
+//Сделать так, чтобы в массиве не было одинаковых по модулю чисел, найти наибольшее по модулю число
+
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+int massiv [100], dif[100],cot=0,a=-1000,b=1000,high;
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    for (int i =0; i<100; i+=2)
+    {
+        massiv[i]=a+rand()%((b+1)-a);
+        //massiv [i+1] = (-1)*rand() %1000;
+    };
+    for (int i =0; i<100; i++)
+    {
+        dif[i]=massiv[i];
+    };
+    do
+    {
+        cot=0;
+    for (int i =0; i<100; i++)
+    {
+        for (int j =0; j<100; j++)
+        {
+            if (abs(massiv[i])==abs(dif[j]))
+            {
+                massiv[i]=a+rand()%((b+1)-a);
+                cot++;
+            };
+        };
+        //cout<<"cot = "<<cot<<endl<<"i = "<<i<<endl;
+    };
+    }
+    while (cot!=0);
+    /*for (int i =0; i<100; i++)
+    {
+        cout <<massiv[i]<<endl;
+    };*/
+    high=massiv[0];
+    for (int i =0; i<100; i++)
+    {
+        if (massiv[i]>=high)
+        {
+            high=massiv[0];
+        };
+    };
+    cout <<high;
+
+    return 0;
+}

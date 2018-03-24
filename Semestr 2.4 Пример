@@ -1,0 +1,45 @@
+#include <iostream>
+#include "ReadImage.h"
+#include <cmath>
+
+using namespace std;
+
+unsigned char *b, *g, *r;
+int w,h;
+ double f (double x, double y)
+{
+    double s = (pow(x/(w-1),2) + pow((y/(h-1)),2));
+    return s;
+};
+
+int main()
+{
+    GetSize("StrangeThings.bmp",&w,&h);
+
+    b = new unsigned char [h*w];
+    g = new unsigned char [h*w];
+    r = new unsigned char [h*w];
+
+    ReadImage("StrangeThings.bmp",b,g,r);
+
+    for (int i = 0; i<h;i++)
+    {
+        for (int j = 0; j<w;j++)
+        {
+            if (f(j,i)<=(0.5))
+            {
+            b[i*w+j]=0;
+            g[i*w+j]=0;
+            r[i*w+j]=255;
+            }
+            else
+            {
+            b[i*w+j]=255;
+            g[i*w+j]=0;
+            r[i*w+j]=0;
+            };
+        };
+        WriteImage("StrangeThings.bmp",b,g,r);
+    };
+    return 0;
+}

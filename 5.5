@@ -1,0 +1,63 @@
+//Задача: Необходимо сформировать матрицу, используя только числа 0-999. Вывести ее на экран и посчитать количество всех 
+//трехзначных, двухзначных и однозначных чисел
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+int a = -1000,b=1000;
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите размерность матрицы (n x k)"<<endl;
+    int n,k;
+    cin >>n;
+    cin >>k;
+
+    int matrix[n][k];
+    int massiv_matrix[k*n];
+    int index=0;
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            matrix[i][j]=a+rand()%((b+1)-a);
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;
+
+    int znachnosti[3]={0,0,0};
+    int znachnost =0;
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            znachnost = 0;
+            do
+            {
+                matrix[i][j]=matrix[i][j]/10;
+                if (matrix[i][j]==0)
+                {
+                    znachnosti[znachnost]++;
+                    break;
+                };
+                znachnost++;
+            }
+            while (abs(matrix[i][j])>0);
+        };
+    };
+    cout <<"Однозначных чисел - "<<znachnosti[0]<<endl<<"Двузначных чисел - "<<znachnosti[1]<<endl<<"Трехзначных чисел -"<<znachnosti[2]<<endl;
+    /*for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;*/
+    return 0;
+}

@@ -1,0 +1,52 @@
+//Задача : Дана произвольная числовая матрица, вывести на экран индексы минимальных элементов этой матрицы
+include <iostream>
+#include <cstdlib>
+
+using namespace std;
+int a = -1000,b=1000;
+int cot,index;
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите размерность матрицы (строк x столбцов)"<<endl;
+    int n,k;
+    cin >>n;
+    cin >>k;
+
+    int matrix[n][k];
+    //int vec[n][1];
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            matrix[i][j]=a+rand()%((b+1)-a);
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;
+
+    int minimal = matrix[0][0];
+    int mas[2*(n*k)];
+    mas[0]=0;
+    mas[1]=0;
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j=0; j<k;j++)
+        {
+            if (minimal>matrix[i][j])
+            {
+                minimal=matrix[i][j];
+                mas[0]=i;
+                mas[1]=j;
+            };
+        };
+    };
+
+    int minimals[n*k];
+    cot = 0;
+    index=2;
+    for (int i =0; i<(n*k);i++)

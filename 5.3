@@ -1,0 +1,59 @@
+//Задача: Найти все положительные элементы главной диагонали квадратной матрицы
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+int a = -1000,b=1000;
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите размерность матрицы (n x k)"<<endl;
+    int n,k;
+    cin >>n;
+    cin >>k;
+
+    int matrix[n][k];
+    int num;
+    if (n>k)
+    {
+        num =k;
+    }
+    else
+    {
+        num =n;
+    };
+    int indexes[2*num];
+    for (int i =0; i<2*num;i++)
+    {
+        indexes[i]=-1;
+    }
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            matrix[i][j]=a+rand()%((b+1)-a);
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;
+    int index=0;
+    for (int i =0; i<num;i++)
+    {
+            if (matrix[i][i]>0)
+            {
+                indexes[index]=i;
+                indexes[index+1]=i;
+                index+=2;
+            };
+    };
+    for (int i =0; i<2*num;i+=2)
+    {
+        if (indexes[i]!=-1)
+        {
+            cout <<indexes[i]<<';'<<indexes[i+1]<<endl;
+        };
+    };
+    return 0;
+}

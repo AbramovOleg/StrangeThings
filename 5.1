@@ -1,0 +1,64 @@
+//Задача: Поменять местами два случайных столбца матрицы (переставить элементы одного столбца на соответствующие им места в другом столбце и наоборот)
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите размерность матрицы (n x k)"<<endl;
+    int n,k;
+    cin >>n;
+    cin >>k;
+
+    int matrix[n][k];
+    int vec[n][1];
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            matrix[i][j]=i+j;
+            cout <<matrix[i][j];
+        };
+        cout<<endl;
+    };
+cout <<endl;
+    int random_num1,random_num2;
+
+    random_num1 = rand()%k-1;
+    random_num2 = rand()%k-1;
+    int cot;
+    do
+    {
+        cot=0;
+        if (random_num1==random_num2)
+        {
+            random_num1=rand()%k-1;
+            cot++;
+        };
+    }
+    while (cot!=0);
+    cout<< random_num1<<random_num2<<endl;
+
+    for (int i = 0; i <n;i++)
+    {
+        vec[i][1]=matrix[i][random_num1];
+        //cout <<vec[i][1]<<endl;
+    };
+    for (int i=0; i<n;i++)
+    {
+        matrix[i][random_num1]=matrix[i][random_num2];
+        matrix[i][random_num2]=vec[i][1];
+    };
+    for (int i=0; i<n;i++)
+    {
+        for (int j=0; j<k;j++)
+        {
+            cout <<matrix[i][j];
+        };
+        cout <<endl;
+    };
+    return 0;
+}

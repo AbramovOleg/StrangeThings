@@ -1,0 +1,40 @@
+//Задача: Записать элементы произвольной в одномерный массив по солбцам
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+int a = -1000,b=1000;
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите размерность матрицы (n x k)"<<endl;
+    int n,k;
+    cin >>n;
+    cin >>k;
+
+    int matrix[n][k];
+    int massiv_matrix[k*n];
+    int index=0;
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            matrix[i][j]=a+rand()%((b+1)-a);
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k;j++)
+        {
+            massiv_matrix[index]=matrix[j][i];
+            cout <<massiv_matrix[index]<<endl;
+            index++;
+        };
+    };
+    return 0;
+}

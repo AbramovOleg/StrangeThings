@@ -1,0 +1,220 @@
+//Задача: Задана матрица произвольных размеров, необходимо изменить последовательность столбцов матрицы так, чтобы элементы первого столбца стояли по возрастанию
+//После этого необходимо изменить последовательность строк так, чтобы элементы первой строки стояли по возрастанию также.
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+int a = -1000,b=1000;
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите размерность матрицы (n x k)"<<endl;
+    int n,k;
+    cin >>n;
+    cin >>k;
+
+    int matrix[n][k];
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            matrix[i][j]=a+rand()%((b+1)-a);
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;
+    int minimal1,minimal2;
+    minimal1=matrix[0][0];
+    minimal2=matrix[0][0];
+
+    for (int j=0;j<k;j++)
+    {
+        if (matrix[0][j]<minimal1)
+        {
+            minimal1=matrix[0][j];
+        };
+    };
+    //cout <<minimal1<<endl;
+    for (int i=0;i<n;i++)
+    {
+        if (matrix[i][0]<minimal1)
+        {
+            minimal2=matrix[i][0];
+        };
+    };
+    //cout <<minimal2<<endl;
+    int buffer;
+
+    if (minimal1>minimal2)
+    {
+            int cot;
+            do
+            {
+                cot = 0;
+                for (int i =0;i<n-1;i++)
+                {
+                    for (int j =0;j<k;j++)
+                    {
+
+                        if (matrix[i][0]>matrix[i+1][0])
+                        {
+                            buffer=matrix[i][j];
+                            matrix[i][j]=matrix[i+1][j];
+                            matrix[i+1][j]=buffer;
+                            cot++;
+                        };
+                    }
+                }
+            }
+            while (cot!=0);
+            do
+            {
+                cot = 0;
+                for (int i =0; i<n;i++)
+                {
+                    for (int j =0;j<k-1;j++)
+                    {
+                        if (matrix[i][j]>matrix[i][j+1])
+                        {
+                            buffer=matrix[i][j];
+                            matrix[i][j]=matrix[i][j+1];
+                            matrix[i][j+1]=buffer;
+                            cot++;
+                        };
+                    };
+                };
+            }
+            while (cot!=0);
+    }
+    else
+    {
+        int cot;
+            do
+            {
+                cot = 0;
+                for (int i =0; i<n;i++)
+                {
+                    for (int j =0;j<k-1;j++)
+                    {
+                        if (matrix[i][j]>matrix[i][j+1])
+                        {
+                            buffer=matrix[i][j];
+                            matrix[i][j]=matrix[i][j+1];
+                            matrix[i][j+1]=buffer;
+                            cot++;
+                        };
+                    };
+                };
+            }
+            while (cot!=0);
+            do
+            {
+                cot = 0;
+                for (int i =0;i<n-1;i++)
+                {
+                    for (int j =0;j<k;j++)
+                    {
+
+                        if (matrix[i][0]>matrix[i+1][0])
+                        {
+                            buffer=matrix[i][j];
+                            matrix[i][j]=matrix[i+1][j];
+                            matrix[i+1][j]=buffer;
+                            cot++;
+                        };
+                    }
+                }
+            }
+            while (cot!=0);
+    };
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;
+
+    return 0;
+}
+                cot = 0;
+                for (int i =0;i<n-1;i++)
+                {
+                    if (matrix[i][0]>matrix[i+1][0])
+                    {
+                        buffer=matrix[i][0];
+                        matrix[i][0]=matrix[i+1][0];
+                        matrix[i+1][0]=buffer;
+                        cot++;
+                    }
+                }
+            }
+            while (cot!=0);
+            do
+            {
+                cot = 0;
+                for (int j =0;j<k-1;j++)
+                {
+                    if (matrix[0][j]>matrix[0][j+1])
+                    {
+                        buffer=matrix[0][j];
+                        matrix[0][j]=matrix[0][j+1];
+                        matrix[0][j+1]=buffer;
+                        cot++;
+                    };
+                };
+            }
+            while (cot!=0);
+    }
+    else
+    {
+        int cot;
+            do
+            {
+                cot = 0;
+                for (int j =0;j<k-1;j++)
+                {
+                    if (matrix[0][j]>matrix[0][j+1])
+                    {
+                        buffer=matrix[0][j];
+                        matrix[0][j]=matrix[0][j+1];
+                        matrix[0][j+1]=buffer;
+                        cot++;
+                    };
+                };
+            }
+            while (cot!=0);
+            do
+            {
+                cot = 0;
+                for (int i =0;i<n-1;i++)
+                {
+                    if (matrix[i][0]>matrix[i+1][0])
+                    {
+                        buffer=matrix[i][0];
+                        matrix[i][0]=matrix[i+1][0];
+                        matrix[i+1][0]=buffer;
+                        cot++;
+                    }
+                }
+            }
+            while (cot!=0);
+    };
+
+    for (int i =0; i<n;i++)
+    {
+        for (int j =0; j<k; j++)
+        {
+            cout <<matrix[i][j]<<' ';
+        };
+        cout<<endl;
+    };
+    cout <<endl;
+
+    return 0;
+}

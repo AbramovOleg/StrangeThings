@@ -47,11 +47,11 @@ int main()
         }
         else
         {
-            stroka.erase(stroka.begin()+equival_number,stroka.begin()+equival_number+length_zamena_poisk);
+            stroka.erase(stroka.begin()+equival_number,stroka.begin()+equival_number+length_zamena_poisk);//вектор здесь был использован только ради этих двух функций
 
             for (int i =0; i<length_zamena;i++)
             {
-                stroka.insert(stroka.begin()+equival_number+i,zamena[i]);
+                stroka.insert(stroka.begin()+equival_number+i,zamena[i]);//вектор здесь был использован только ради этих двух функций
             };
 
             for (int i =0; i<stroka.size();i++)

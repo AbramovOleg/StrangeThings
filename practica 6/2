@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <cstring>
+#include "KMP.h"
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите строку, в которой нужно провести замену:"<<endl;
+    char *text = new char [100000];;
+    gets(text);
+
+    cout <<"Введите подстроку для поиска:"<<endl;
+    char zamena_poisk[100000];
+    gets(zamena_poisk);
+    int length_zamena_poisk = strlen(zamena_poisk);
+
+    cout<<"Введите строку, на которую нужно заменить"<<endl;
+    int length_zamena;
+    char zamena[100000];
+    gets(zamena);
+    length_zamena=strlen(zamena);
+
+    vector<char> stroka;
+        for (int i =0; text[i]!='\0';i++)
+        {
+            stroka.insert(stroka.end(),text[i]);
+        };
+
+        int equival_number;
+    while (seek_substring_KMP(text,zamena_poisk)!=-1)
+    {
+        stroka.clear();
+        for (int i =0; text[i]!='\0';i++)
+        {
+            stroka.insert(stroka.end(),text[i]);
+        };
+
+        equival_number=seek_substring_KMP(text,zamena_poisk);
+        if (equival_number==-1)
+        {
+            cout <<"Подстрока не найдена "<<endl;
+            return 0;
+        }
+        else
+        {
+            stroka.erase(stroka.begin()+equival_number,stroka.begin()+equival_number+length_zamena_poisk);
+
+            for (int i =0; i<length_zamena;i++)
+            {
+                stroka.insert(stroka.begin()+equival_number+i,zamena[i]);
+            };
+
+            for (int i =0; i<stroka.size();i++)
+                {
+                    cout <<stroka[i];
+                };
+        };
+        delete[] text;
+        char* text = new char [100000];
+
+        for (int i =0; i<stroka.size();i++)
+        {
+            text[i]=stroka[i];
+        };
+        cout <<endl;
+
+    };
+    cout <<"Замена завершена. Получившаяся строка - "<<endl;
+    for (int i =0; text[i]!='\0';i++)
+    {
+        cout <<text[i];
+    }
+    return 0;
+}

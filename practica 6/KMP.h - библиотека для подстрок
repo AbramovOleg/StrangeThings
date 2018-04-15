@@ -1,4 +1,4 @@
-//Эта функция возвращает номер строки, с которого начинается найденная подстрока
+//Эта функция возвращает номер строки, с которого начинается найденная подстрока, если подстрока не найдена, то возвращает -1
 
 #include <iostream>
 #include <cstring>
@@ -11,8 +11,7 @@ int seek_substring_KMP (char s[], char q[])
 	int i, j, N, M;
 	N = strlen(s);
 	M = strlen(q);
-	int *d =(int*)malloc(M*sizeof(int)); /* динамический массив длины М*/
-	/* Вычисление префикс-функции */
+	int *d =(int*)malloc(M*sizeof(int));
 	i=0;
 	j=-1;
 	d[0]=-1;
@@ -27,13 +26,12 @@ int seek_substring_KMP (char s[], char q[])
 		else
 			d[i]= j;
 		}
-	/* поиск */
 	for(i=0,j=0;(i<N)&&(j<M); i++,j++)
 		while((j>=0)&&(q[j]!=s[i]))
 			j=d[j];
-	free (d); /* освобождение памяти массива d */
+	free (d);
 	if (j==M)
 		return i-j;
-	else /* i==N */
+	else 
 		return -1;
 	};

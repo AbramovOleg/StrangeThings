@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <cstdio>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    char text[100000];
+    gets(text);
+
+    vector<char>stroka;
+    for (int i =0; text[i]!='\0';i++)
+    {
+        stroka.insert(stroka.end(),text[i]);
+    };
+    cout <<"Исходная строка - ";
+    for (int i =0; i<stroka.size();i++)
+    {
+        cout <<stroka[i];
+    }
+    cout <<endl;
+
+    for (int i =0; i<stroka.size();i++)
+    {
+        for (int j=i+1; j<stroka.size();j++)
+        {
+            if (stroka[i]==stroka[j]||stroka[j]==' ')
+            {
+                stroka.erase(stroka.begin()+j);
+            };
+        };
+    };
+    cout <<"Полученная строка - ";
+    for (int i =0; i<stroka.size();i++)
+    {
+        cout <<stroka[i];
+    }
+
+    return 0;
+}

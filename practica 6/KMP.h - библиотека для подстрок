@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstring>
+#include <cstdio>
+#include <cstdlib>
+
+using namespace std;
+int seek_substring_KMP (char s[], char q[])
+	{
+	int i, j, N, M;
+	N = strlen(s);
+	M = strlen(q);
+	int *d =(int*)malloc(M*sizeof(int)); /* динамический массив длины М*/
+	/* Вычисление префикс-функции */
+	i=0;
+	j=-1;
+	d[0]=-1;
+	while(i<M-1)
+		{
+		while((j>=0) && (q[j]!=q[i]))
+			j = d[j];
+		i++;
+		j++;
+		if(q[i]==q[j])
+			d[i]=d[j];
+		else
+			d[i]= j;
+		}
+	/* поиск */
+	for(i=0,j=0;(i<N)&&(j<M); i++,j++)
+		while((j>=0)&&(q[j]!=s[i]))
+			j=d[j];
+	free (d); /* освобождение памяти массива d */
+	if (j==M)
+		return i-j;
+	else /* i==N */
+		return -1;
+	}
+
+int main()
+{
+    char string[256];
+    char massiv[256];
+    gets(string);
+    gets(massiv);
+    cout << seek_substring_KMP(string, massiv) << endl;
+    return 0;
+}

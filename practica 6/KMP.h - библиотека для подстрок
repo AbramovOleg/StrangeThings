@@ -1,3 +1,5 @@
+//Эта функция возвращает номер строки, с которого начинается найденная подстрока
+
 #include <iostream>
 #include <cstring>
 #include <cstdio>
@@ -34,14 +36,4 @@ int seek_substring_KMP (char s[], char q[])
 		return i-j;
 	else /* i==N */
 		return -1;
-	}
-
-int main()
-{
-    char string[256];
-    char massiv[256];
-    gets(string);
-    gets(massiv);
-    cout << seek_substring_KMP(string, massiv) << endl;
-    return 0;
-}
+	};

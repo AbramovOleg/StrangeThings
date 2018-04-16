@@ -35,7 +35,7 @@ void SetColor(int text, int background)
 }
 int main()
 {
-    SetConsoleCP(1251);
+    SetConsoleCP(1251);//Для работы этих функций необходимо поменять шрифт в консоли на Lucida Console
     SetConsoleOutputCP(1251);
 
     char text[100000];

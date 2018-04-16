@@ -1,0 +1,181 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+
+using namespace std;
+
+int seek_glav_neglav__word(char x)
+{
+    if (x=='a') return 0;
+    if (x=='b') return 0;
+    if (x=='c') return 0;
+    if (x=='d') return 0;
+    if (x=='e') return 0;
+    if (x=='f') return 0;
+    if (x=='g') return 0;
+    if (x=='h') return 0;
+    if (x=='i') return 0;
+    if (x=='j') return 0;
+    if (x=='k') return 0;
+    if (x=='l') return 0;
+    if (x=='m') return 0;
+    if (x=='n') return 0;
+    if (x=='o') return 0;
+    if (x=='p') return 0;
+    if (x=='q') return 0;
+    if (x=='r') return 0;
+    if (x=='s') return 0;
+    if (x=='t') return 0;
+    if (x=='u') return 0;
+    if (x=='v') return 0;
+    if (x=='w') return 0;
+    if (x=='x') return 0;
+    if (x=='y') return 0;
+    if (x=='z') return 0;
+    if (x=='A') return 1;
+    if (x=='B') return 1;
+    if (x=='C') return 1;
+    if (x=='D') return 1;
+    if (x=='E') return 1;
+    if (x=='F') return 1;
+    if (x=='G') return 1;
+    if (x=='H') return 1;
+    if (x=='I') return 1;
+    if (x=='J') return 1;
+    if (x=='K') return 1;
+    if (x=='L') return 1;
+    if (x=='M') return 1;
+    if (x=='N') return 1;
+    if (x=='O') return 1;
+    if (x=='P') return 1;
+    if (x=='Q') return 1;
+    if (x=='R') return 1;
+    if (x=='S') return 1;
+    if (x=='T') return 1;
+    if (x=='U') return 1;
+    if (x=='V') return 1;
+    if (x=='W') return 1;
+    if (x=='X') return 1;
+    if (x=='Y') return 1;
+    if (x=='Z') return 1;
+}
+void replace_word_glav_neglav(int glav_neglav,char* x,int index_seek)
+{
+    if (glav_neglav==0)
+    {
+        for (int i =index_seek; x[i]!=' ';i++)
+        {
+            if (x[i]=='A') x[i]='a' ;
+            if (x[i]=='B') x[i]='b';
+            if (x[i]=='C') x[i]='c';
+            if (x[i]=='D') x[i]='d';
+            if (x[i]=='E') x[i]='e';
+            if (x[i]=='F') x[i]='f';
+            if (x[i]=='G') x[i]='g';
+            if (x[i]=='H') x[i]='h';
+            if (x[i]=='I') x[i]='i';
+            if (x[i]=='J') x[i]='j';
+            if (x[i]=='K') x[i]='k';
+            if (x[i]=='L') x[i]='l';
+            if (x[i]=='M') x[i]='m';
+            if (x[i]=='N') x[i]='n';
+            if (x[i]=='O') x[i]='o';
+            if (x[i]=='P') x[i]='p';
+            if (x[i]=='Q') x[i]='q';
+            if (x[i]=='R') x[i]='r';
+            if (x[i]=='S') x[i]='s';
+            if (x[i]=='T') x[i]='t';
+            if (x[i]=='U') x[i]='u';
+            if (x[i]=='V') x[i]='v';
+            if (x[i]=='W') x[i]='w';
+            if (x[i]=='X') x[i]='x';
+            if (x[i]=='Y') x[i]='y';
+            if (x[i]=='Z') x[i]='z';
+        };
+    }
+    else
+    {
+        for (int i =index_seek; x[i]!=' ';i++)
+        {
+            if (x[i]=='a') x[i]='A' ;
+            if (x[i]=='b') x[i]='B';
+            if (x[i]=='c') x[i]='C';
+            if (x[i]=='d') x[i]='D';
+            if (x[i]=='e') x[i]='E';
+            if (x[i]=='f') x[i]='F';
+            if (x[i]=='g') x[i]='G';
+            if (x[i]=='h') x[i]='H';
+            if (x[i]=='i') x[i]='I';
+            if (x[i]=='j') x[i]='J';
+            if (x[i]=='k') x[i]='K';
+            if (x[i]=='l') x[i]='L';
+            if (x[i]=='m') x[i]='M';
+            if (x[i]=='n') x[i]='N';
+            if (x[i]=='o') x[i]='O';
+            if (x[i]=='p') x[i]='P';
+            if (x[i]=='q') x[i]='Q';
+            if (x[i]=='r') x[i]='R';
+            if (x[i]=='s') x[i]='S';
+            if (x[i]=='t') x[i]='T';
+            if (x[i]=='u') x[i]='U';
+            if (x[i]=='v') x[i]='V';
+            if (x[i]=='w') x[i]='W';
+            if (x[i]=='x') x[i]='X';
+            if (x[i]=='y') x[i]='Y';
+            if (x[i]=='z') x[i]='Z';
+        };
+    };
+};
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    char text[100000];
+    gets (text);
+    int length = strlen(text);
+
+    char stroka [length+1];
+    stroka[0]=' ';
+
+    for (int i =1; i<length+1;i++)
+    {
+        stroka[i]=text[i-1];
+    };
+
+    int glav=0;
+    int neglav=0;
+    for (int i =0; stroka[i]!='\0';i++)
+    {
+        if (seek_glav_neglav__word(stroka[i])==0) neglav++;
+        else glav++;
+    };
+    cout <<"Количество заглавных и строчных букв до замены:"<<endl;
+    cout <<"Заглавных - "<<glav<<endl<<"Строчных - "<<neglav<<endl;
+
+    for (int i =0; stroka[i]!='\0';i++)
+    {
+        if (stroka[i]==' ')
+        {
+            replace_word_glav_neglav(seek_glav_neglav__word(stroka[i+1]),stroka,i+1);
+        };
+    };
+    glav = 0;
+    neglav=0;
+
+    for (int i =0; i<length+1;i++)
+    {
+        if (seek_glav_neglav__word(stroka[i])==0) neglav++;
+        else glav++;
+    };
+    cout <<"Количество заглавных и строчных букв после замены:"<<endl;
+    cout <<"Заглавных - "<<glav<<endl<<"Строчных - "<<neglav<<endl;
+
+    for (int i =0; i<length+1;i++)
+    {
+        cout <<stroka[i];
+    };
+
+
+
+ return 0;
+}

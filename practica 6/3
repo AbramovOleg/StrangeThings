@@ -1,0 +1,71 @@
+#include <iostream>
+#include <cstdio>
+#include <vector>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+    char stroka[100000];
+    gets (stroka);
+    vector<char> stroka_numbers;
+    int index =0;
+
+    for (int i =0; stroka[i]!='\0';i++)
+    {
+        if ('0'<=stroka[i]&&stroka[i]<='9')
+        {
+            stroka_numbers.insert(stroka_numbers.begin()+index,stroka[i]);
+            index++;
+        }
+        else
+        {
+            if((stroka[i]>'9'||stroka[i]<'0')&&('0'<=stroka[i-1]&&stroka[i-1]<='9'))
+            {
+                stroka_numbers.insert(stroka_numbers.begin()+index,';');
+                index++;
+            };
+        };
+    };
+
+    int stroka_numbers_int[stroka_numbers.size()];
+
+    for (int i =0; i<stroka_numbers.size();i++)
+    {
+        stroka_numbers_int[i]=0;
+    };
+
+    index=0;
+    for (int i =0; i<stroka_numbers.size();i++)
+    {
+        if (stroka_numbers[i]=='1') stroka_numbers_int[index]=stroka_numbers_int[index]*10+1;
+        if (stroka_numbers[i]=='2') stroka_numbers_int[index]=stroka_numbers_int[index]*10+2;
+        if (stroka_numbers[i]=='3') stroka_numbers_int[index]=stroka_numbers_int[index]*10+3;
+        if (stroka_numbers[i]=='4') stroka_numbers_int[index]=stroka_numbers_int[index]*10+4;
+        if (stroka_numbers[i]=='5') stroka_numbers_int[index]=stroka_numbers_int[index]*10+5;
+        if (stroka_numbers[i]=='6') stroka_numbers_int[index]=stroka_numbers_int[index]*10+6;
+        if (stroka_numbers[i]=='7') stroka_numbers_int[index]=stroka_numbers_int[index]*10+7;
+        if (stroka_numbers[i]=='8') stroka_numbers_int[index]=stroka_numbers_int[index]*10+8;
+        if (stroka_numbers[i]=='9') stroka_numbers_int[index]=stroka_numbers_int[index]*10+9;
+        if (stroka_numbers[i]=='0') stroka_numbers_int[index]=stroka_numbers_int[index]*10;
+        if (stroka_numbers[i]==';') index++;
+
+        if (stroka_numbers[i]=='0'&&stroka_numbers[i-1]==';'&&stroka_numbers[i+1]==';')
+        {
+            stroka_numbers_int[index]=-1;
+        }
+    };
+    for (int i =0; i<stroka_numbers.size();i++)
+    {
+        if (stroka_numbers_int[i]>0)
+        {
+            cout <<stroka_numbers_int[i]<<endl;
+        };
+        if (stroka_numbers_int[i]==-1)
+        {
+            cout <<'0'<<endl;
+        };
+    };
+    return 0;
+}

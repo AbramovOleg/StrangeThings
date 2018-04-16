@@ -25,10 +25,6 @@ int main()
     length_zamena=strlen(zamena);
 
     vector<char> stroka;
-        for (int i =0; text[i]!='\0';i++)
-        {
-            stroka.insert(stroka.end(),text[i]);
-        };
 
         int equival_number;
     while (seek_substring_KMP(text,zamena_poisk)!=-1)

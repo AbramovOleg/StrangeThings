@@ -194,10 +194,10 @@ void SetColor(int text, int background)
 //Новая функция. Если слово начинается с маленькой буквы, то меняет все буквы слова на маленькие буквы и наоборот.
 
 void replace_word_glav_neglav(int glav_neglav,char* x,int index_seek)//glav_neglav = const = 0, если нужно заменить все буквы на маленькие
-{                                                                    //glav_neglav = const = 1, если нужно заменить все буквы на большие
+{   int x_length_KMP_seek_word = strlen(x);                                                                //glav_neglav = const = 1, если нужно заменить все буквы на большие
     if (glav_neglav==0)
     {
-        for (int i =index_seek; x[i]!=' ';i++)
+        for (int i =index_seek; x[i]!=' '&&i<x_length_KMP_seek_word;i++)
         {
             if (x[i]=='A') x[i]='a' ;
             if (x[i]=='B') x[i]='b';
@@ -262,7 +262,7 @@ void replace_word_glav_neglav(int glav_neglav,char* x,int index_seek)//glav_negl
     }
     else
     {
-        for (int i =index_seek; x[i]!=' ';i++)
+        for (int i =index_seek; x[i]!=' '&&i<x_length_KMP_seek_word;i++)
         {
             if (x[i]=='a') x[i]='A';
             if (x[i]=='b') x[i]='B';

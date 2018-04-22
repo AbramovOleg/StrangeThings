@@ -26,12 +26,13 @@ int main()
 
     for (int i =0; i<stroka.size();i++)
     {
-        for (int j=i+1; j<stroka.size();j++)
+        for (int j=i+1; j<stroka.size();)
         {
             if (stroka[i]==stroka[j]||stroka[j]==' ')
             {
                 stroka.erase(stroka.begin()+j);
             };
+            if (stroka[i]!=stroka[j]) j++
         };
     };
     cout <<"Полученная строка - ";

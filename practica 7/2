@@ -1,2 +1,38 @@
 //Задача: Дан текст, определить процент заглавных и строчных букв в общем количестве символов без учета пробелов.
 
+#include <iostream>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include "KMP.h"
+
+using namespace std;
+double percent(double x,double letters)
+{
+    return (x/letters)*100;
+};
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    char text[1000];
+    cout <<"Введите текст"<<endl;
+    gets(text);
+    int textLength = strlen(text);
+    int Letters=0,glav=0,neglav=0;
+
+    for (int i =0;i<textLength;i++)
+    {
+        if (text[i]!=' ')
+        {
+            Letters++;
+            if (seek_glav_neglav__word(text[i])==0) neglav++;
+            if (seek_glav_neglav__word(text[i])==1) glav++;
+        }
+    };
+    //cout <<letters;
+    cout <<"Процент строчных букв в тексте - "<<ceil(percent(neglav,Letters))<<endl;
+    cout <<"Процент заглавных букв в тексте - "<<ceil(percent(glav,Letters))<<endl;
+
+    return 0;
+}

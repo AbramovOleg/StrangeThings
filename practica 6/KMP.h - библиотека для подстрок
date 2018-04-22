@@ -191,7 +191,7 @@ void SetColor(int text, int background)
    SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
 }
 
-//Новая функция. Если слово начинается с маленькой буквы, то меняет все буквы слова на маленькие буквы и наоборот.Работает только с латиницей.
+//Новая функция. Если слово начинается с маленькой буквы, то меняет все буквы слова на маленькие буквы и наоборот.
 
 void replace_word_glav_neglav(int glav_neglav,char* x,int index_seek)//glav_neglav = const = 0, если нужно заменить все буквы на маленькие
 {                                                                    //glav_neglav = const = 1, если нужно заменить все буквы на большие

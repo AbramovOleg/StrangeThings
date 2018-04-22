@@ -1,0 +1,81 @@
+//Ввести строку, содержащую маленькие и большие буквы.
+//Задача 1: Вывести таблицу соответствия введенных символов и их кодировки.
+//Задача 2: Вывести строку, заменив все маленькие буквы большими.
+//Задача 3: Вывести строку, заменив все большие буквы маленькими.
+
+#include <iostream>
+#include <cstring>
+#include <cstdio>
+#include <vector>
+#include <windows.h>
+#include "KMP.h"
+
+using namespace std;
+
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    char text[10000];
+    cout <<"Введите текст:"<<endl;
+    gets(text);
+    int textLength = strlen(text);
+    vector<char> textVector;
+
+    for (int i =0; i<textLength;i++)
+    {
+        textVector.insert(textVector.begin()+i,text[i]);;
+    };
+    char* textGlav=new char [textLength+2];
+    char* textNeglav = new char [textLength+2];
+    textGlav[0]=' ';
+    textNeglav[0]=' ';
+    for (int i =1; i<textLength+1;i++)
+    {
+        textGlav[i]=text[i-1];
+        textNeglav[i]=text[i-1];
+        //cout <<textGlav[i];
+    };
+    for (int i =0; i<textVector.size();i++)
+    {
+        for (int j=i+1; j<textVector.size();)
+        {
+            if (textVector[i]==textVector[j])
+            {
+                textVector.erase(textVector.begin()+j);
+            };
+            if (textVector[i]!=textVector[j]) j++;
+        };
+    };
+    cout <<endl;
+    int textCodeASCII [textVector.size()];
+    cout <<"ASCII всех символов:"<<endl;
+    for (int i =0; i<textVector.size();i++)
+    {
+        textCodeASCII[i]=textVector[i];
+        cout <<textVector[i] <<'='<< textCodeASCII[i]<<endl;
+    };
+    cout <<endl;
+
+    for (int i =0; i<textLength;i++)
+    {
+        if (textGlav[i]==' ')
+        {
+            replace_word_glav_neglav(1,textGlav,i+1);
+            replace_word_glav_neglav(0,textNeglav,i+1);
+        };
+    };
+    for (int i =1; i<textLength+1;i++)
+    {
+        cout <<textGlav[i];
+    };
+    cout <<endl;
+    for (int i =1; i<textLength+1;i++)
+    {
+        cout <<textNeglav[i];
+    }
+
+    return 0;
+}

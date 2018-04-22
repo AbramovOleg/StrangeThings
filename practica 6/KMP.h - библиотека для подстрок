@@ -1,6 +1,6 @@
 //Эта функция возвращает номер строки, с которого начинается найденная подстрока, если подстрока не найдена, то возвращает -1
 //Использует алгоритм Кнута-Морриса-Пратта
-//Есть предположение,что не работает с кириллицей 
+//Есть предположение,что не работает с кириллицей. Предположение неверно. 
 
 #include <iostream>
 #include <cstring>
@@ -39,6 +39,7 @@ int seek_substring_KMP (char s[], char q[])
 		return -1;
 	};
 //Функция возвращает 0, если буква строчная, 1 - если заглавная
+//Теперь работает и с кириллицей
 
 int seek_glav_neglav__word(char x)
 {
@@ -94,6 +95,72 @@ int seek_glav_neglav__word(char x)
     if (x=='X') return 1;
     if (x=='Y') return 1;
     if (x=='Z') return 1;
+    if (x=='а') return 0;
+    if (x=='б') return 0;
+    if (x=='в') return 0;
+    if (x=='г') return 0;
+    if (x=='д') return 0;
+    if (x=='е') return 0;
+    if (x=='ё') return 0;
+    if (x=='ж') return 0;
+    if (x=='з') return 0;
+    if (x=='и') return 0;
+    if (x=='й') return 0;
+    if (x=='к') return 0;
+    if (x=='л') return 0;
+    if (x=='м') return 0;
+    if (x=='н') return 0;
+    if (x=='о') return 0;
+    if (x=='п') return 0;
+    if (x=='р') return 0;
+    if (x=='с') return 0;
+    if (x=='т') return 0;
+    if (x=='у') return 0;
+    if (x=='ф') return 0;
+    if (x=='х') return 0;
+    if (x=='ц') return 0;
+    if (x=='ч') return 0;
+    if (x=='ш') return 0;
+    if (x=='щ') return 0;
+    if (x=='ь') return 0;
+    if (x=='ы') return 0;
+    if (x=='ъ') return 0;
+    if (x=='э') return 0;
+    if (x=='ю') return 0;
+    if (x=='я') return 0;
+    if (x=='А') return 1;
+    if (x=='Б') return 1;
+    if (x=='В') return 1;
+    if (x=='Г') return 1;
+    if (x=='Д') return 1;
+    if (x=='Е') return 1;
+    if (x=='Ё') return 1;
+    if (x=='Ж') return 1;
+    if (x=='З') return 1;
+    if (x=='И') return 1;
+    if (x=='Й') return 1;
+    if (x=='К') return 1;
+    if (x=='Л') return 1;
+    if (x=='М') return 1;
+    if (x=='Н') return 1;
+    if (x=='О') return 1;
+    if (x=='П') return 1;
+    if (x=='Р') return 1;
+    if (x=='С') return 1;
+    if (x=='Е') return 1;
+    if (x=='У') return 1;
+    if (x=='Ф') return 1;
+    if (x=='Х') return 1;
+    if (x=='Ц') return 1;
+    if (x=='Ч') return 1;
+    if (x=='Ш') return 1;
+    if (x=='Щ') return 1;
+    if (x=='Ь') return 1;
+    if (x=='Ы') return 1;
+    if (x=='Ъ') return 1;
+    if (x=='Э') return 1;
+    if (x=='Ю') return 1;
+    if (x=='Я') return 1;
 }
 
 //Функция меняет цвет выводящихся на консоль букв и фона консоли

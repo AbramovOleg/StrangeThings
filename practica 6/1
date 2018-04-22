@@ -32,7 +32,7 @@ int main()
             {
                 stroka.erase(stroka.begin()+j);
             };
-            if (stroka[i]!=stroka[j]) j++
+            if (stroka[i]!=stroka[j]) j++;
         };
     };
     cout <<"Полученная строка - ";

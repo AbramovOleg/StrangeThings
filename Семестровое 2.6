@@ -1,0 +1,121 @@
+//Рисование графика функции и отыскание корня с использованием метода Ньютона и метода деления отрезка пополам. С графической иллюстрацией первого метода.
+
+#include <iostream>
+#include <cmath>
+#include "Graph2016.h"
+#include <fstream>
+
+using namespace std;
+
+double a,b,c,d;
+double Nx,Ny;
+int rf,gf,bf;
+int shag;
+double x_0,x_1,eps;
+
+
+double functia (double x)
+{
+    double s= sin(x)+pow(x,8)-1;
+    return s;
+};
+double proizwodnaya (double x)
+{
+    double s = cos(x)+(8*pow(x,7));
+    return s;
+};
+
+void Nuton()
+{
+    ifstream InfoIn ("In.txt");
+    InfoIn>>a;
+    InfoIn>>b;
+    InfoIn>>c;
+    InfoIn>>d;
+    InfoIn>>Nx;
+    InfoIn>>Ny;
+    InfoIn>>shag;
+    InfoIn>>rf;
+    InfoIn>>gf;
+    InfoIn>>bf;
+    InfoIn>>x_0;
+    InfoIn>>eps;
+    InfoIn.close();
+
+    SetColor(250,250,250);
+    SetWindow(a,b,c,d);
+
+    SetColor(0,0,0);
+    xyLine(0,0,Nx,Ny);
+
+    double hX=(b-a)/shag;
+
+	SetColor(rf,gf,bf);
+	SetPoint(a,functia(a));
+	for (double x=a; x<b; x+=hX)
+		Line(x,functia(x));
+	Line(b,functia(b));
+
+	int cot=0;
+	while  (abs(functia(x_0))>eps)
+    {
+        //cout <<"f(x) = "<<functia(x_0)<<endl;
+        //cout <<"f'(x) = "<<proizwodnaya(x_0)<<endl;
+        //cout <<"f'(x)/f(x) = "<<functia(x_0)/proizwodnaya(x_0)<<endl;
+        x_1 = x_0-(functia(x_0)/proizwodnaya(x_0));
+        SetPoint(x_0,functia(x_0));
+        SetColor(255,0,0);
+        Line(x_1,0);
+        //cout <<"x1 = "<<x_1<<endl;
+        x_0=x_1;
+        cot++;
+    };
+
+	CloseWindow("StrangeThings.bmp");
+	ofstream infoout("out.txt");
+	infoout <<"Метод Ньютона"<<':'<<endl;
+    infoout <<"Значение корня - "<<x_0<<endl;;
+    infoout <<"Количество итераций - "<<cot;
+    //cout <<abs(functia(0));
+    //cout << (functia(x_0)/proizwodnaya(x_0))<<endl;*/
+
+}
+int main()
+{
+    Nuton();
+    double left,right,mid;
+    int cot=0;
+    left = 0.7;
+    right = 1.0;
+    mid = (left+right)/2;
+
+    while (abs(functia(mid)>eps))
+    {
+        mid = (left+right)/2;
+        if (functia(left)<0&&functia(mid)>0&&functia(right)>0)
+        {
+            right=mid;
+        };
+        if (functia(left)>0&&functia(mid)<0&&functia(right)<0)
+        {
+            left=mid;
+        };
+        if (functia(right)<0&&functia(mid)>0&&functia(left)>0)
+        {
+            left=mid;
+        };
+        if (functia(right)>0&&functia(mid)<0&&functia(left)<0)
+        {
+            right=mid;
+        };
+        cot++;
+    };
+    ofstream infoOut("out.txt",ios_base::app);
+    infoOut <<endl<<endl<<"Метод деления отрезка пополам"<<endl;
+    infoOut <<"Корень: "<<mid<<endl;
+    infoOut <<"Количество итераций:"<<endl<<cot;
+    //infoOut <<"f(x) - "<<functia(mid);
+    infoOut.close();
+
+    return 0;
+}

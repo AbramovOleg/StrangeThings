@@ -1,0 +1,78 @@
+//Задача 4: Отсортировать массив строк в алфавитном порядке.
+//Задача 5: Отсортировать все слова в тексте в алфавитном порядке
+//С обеими этими задачами успешно справляется одна программа.
+
+#include <iostream>
+#include <cstring>
+#include <cstdio>
+#include <vector>
+#include <windows.h>
+#include <fstream>
+
+using namespace std;
+
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    char text[10000];
+    cout <<"Введите текст: ";
+    gets(text);
+    int textLength = strlen(text);
+    vector<string> textVector;
+    int cot=0;
+
+    for (int i =0; i<textLength;i++)
+    {
+        if (text[i]==' ')
+        {
+            cot++;
+        };
+    };
+
+    ofstream textOut ("text.txt");
+    for (int i =0; i<textLength;i++)
+    {
+        textOut<<text[i];
+    };
+    textOut.close();
+
+    ifstream textVectorIn("text.txt");
+    for (int i =0; i<cot+1;i++)
+    {
+        string buffer;
+        textVectorIn>>buffer;
+        textVector.push_back(buffer);
+    };
+    cout <<"Несортированный текст: "<<endl;
+
+    for (int i =0; i<textVector.size();i++)
+    {
+        cout <<textVector[i]<<endl;
+    };
+    int counter =0;
+    do
+    {
+        counter=0;
+        for (int i =0;i<cot;i++)
+        {
+            string buffer;
+            if (textVector[i]>textVector[i+1])
+            {
+                buffer=textVector[i];
+                textVector[i]=textVector[i+1];
+                textVector[i+1]=buffer;
+                counter++;
+            };
+        };
+    } while (counter!=0);
+    cout <<endl<<"Сортированный в алфивитном порядке текст: "<<endl;
+    for (int i =0; i<textVector.size();i++)
+    {
+        cout <<textVector[i]<<endl;
+    };
+
+    return 0;
+}

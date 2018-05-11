@@ -1,0 +1,75 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    int year;
+    cout <<"Введите год"<<endl;
+    cin >>year;
+    if (year%100>=11&&year%100<=14)
+    {
+        cout <<"Лет"<<endl;
+    }
+    else
+    {
+    int yearLastNum = year%10;
+
+    switch (yearLastNum)
+    {
+    case 1:
+        {
+            cout <<"Год";
+            break;
+        };
+    case 2:
+        {
+            cout <<"Года";
+            break;
+        };
+    case 3:
+        {
+            cout <<"Года";
+            break;
+        };
+    case 4:
+        {
+            cout <<"Года";
+            break;
+        };
+    case 5:
+        {
+            cout <<"Лет";
+            break;
+        };
+    case 6:
+        {
+            cout <<"Лет";
+            break;
+        };
+    case 7:
+        {
+            cout <<"Лет";
+            break;
+        };
+    case 8:
+        {
+            cout <<"Лет";
+            break;
+        };
+    case 9:
+        {
+            cout <<"Лет";
+            break;
+        };
+    case 0:
+        {
+            cout <<"Лет";
+            break;
+        };
+        };
+    };
+    return 0;
+}

@@ -1,0 +1,135 @@
+//Задача: Бесконечно генерируется последовательность, состоящая из букв a,b,c. Необходимо по нажатию клавиши остановить генерацию.
+//Вывести на экран количество триад - aaa, bbb, ccc.
+
+#include <iostream>
+#include <windows.h>
+#include <vector>
+#include <cstdio>
+#include <cstring>
+
+using namespace std;
+inline bool IsKeyDown(int Key)
+{
+  return (GetKeyState(Key) & 0x8000) != 0;
+}
+void generationInfinity()
+{
+    vector<char> trash;
+    int a=0,b=0,c=0,index=0;
+    while(true)
+    {
+      if( IsKeyDown('S') ){ break; }
+      int thing = rand()%3+1;
+      if (thing==1) trash.insert(trash.end(),'a');
+      if (thing==2) trash.insert(trash.end(),'b');
+      if (thing==3) trash.insert(trash.end(),'c');
+      cout <<trash[index];
+      index++;
+    };
+    if (trash[2]==trash[1]&&trash[2]==trash[0]&&trash[2]!=trash[3])
+        {
+            if (trash[2]=='a')
+            {
+                a++;
+            };
+            if (trash[2]=='b')
+            {
+                b++;
+            };
+            if (trash[2]=='c')
+            {
+                c++;
+            };
+        };
+    for (int i =3;i<trash.size();i++)
+    {
+        if (trash[i]==trash[i-1]&&trash[i]==trash[i-2]&&trash[i]!=trash[i-3]&&trash[i]!=trash[i+1])
+        {
+            if (trash[i]=='a')
+            {
+                a++;
+            };
+            if (trash[i]=='b')
+            {
+                b++;
+            };
+            if (trash[i]=='c')
+            {
+                c++;
+            };
+        };
+    };
+
+    cout <<endl<<"aaa - "<<a<<endl;
+    cout <<"bbb - "<<b<<endl;
+    cout <<"ccc - "<<c<<endl<<endl;
+};
+void generationDebug(char trash[])
+{
+    int trash_Length=strlen(trash);
+    int a=0,b=0,c=0;
+
+    if (trash[2]==trash[1]&&trash[2]==trash[0]&&trash[2]!=trash[3])
+        {
+            if (trash[2]=='a')
+            {
+                a++;
+            };
+            if (trash[2]=='b')
+            {
+                b++;
+            };
+            if (trash[2]=='c')
+            {
+                c++;
+            };
+        };
+    for (int i =3;i<trash_Length;i++)
+    {
+        if (trash[i]==trash[i-1]&&trash[i]==trash[i-2]&&trash[i]!=trash[i-3]&&trash[i]!=trash[i+1])
+        {
+            if (trash[i]=='a')
+            {
+                a++;
+            };
+            if (trash[i]=='b')
+            {
+                b++;
+            };
+            if (trash[i]=='c')
+            {
+                c++;
+            };
+        };
+
+    };
+
+    cout <<endl<<"aaa - "<<a<<endl;
+    cout <<"bbb - "<<b<<endl;
+    cout <<"ccc - "<<c<<endl;
+};
+
+int main()
+{
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    char answ;
+    cout <<"Активировать режим отладки? (Y\\N)"<<endl;
+    cin >>answ;
+    if (answ=='Y')
+    {
+        char text[1000];
+        cout<<"Режим отладки активирован"<<endl<<"Введите последовательность"<<endl;
+        cin >>text;
+        generationDebug(text);
+    }
+    else
+    {
+        cout <<"Для того, чтобы остановить генерацию, нажмите Shift+S"<<endl;
+        generationInfinity();
+        system("pause");
+    };
+    //system("pause");
+
+    return 0;
+}

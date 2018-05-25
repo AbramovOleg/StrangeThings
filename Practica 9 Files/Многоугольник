@@ -1,0 +1,213 @@
+//Задача: Дан выпуклый многоугольник с заданными координатами вершин, и дана точка с заданными координатами.
+//Необходимо определить: лежит точка внутри или вне многоугольника.
+
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include "Graph2016.h"
+
+using namespace std;
+
+int main()
+{
+    setlocale(LC_ALL,"rus");
+    cout <<"Введите количество углов многоугольника "<<endl;
+    int n;
+    cin >>n;
+    double coordinates[n+1][n+1];
+    cout <<"Начинайте вводить координаты вершин: "<<endl;
+    for (int i =0; i<n;i++)
+    {
+        cin >>coordinates[0][i];
+        cin >>coordinates[1][i];
+    };
+    cout <<endl<<"Теперь введите координаты точки: "<<endl;
+    cin >>coordinates[0][n];cin >>coordinates[1][n];
+//--Графическая иллюстрация--
+    int minx=coordinates[0][0];
+    int maxx=coordinates[0][0];
+    int miny=coordinates[1][0];
+    int maxy=coordinates[1][0];
+    for (int i =0;i<n+1;i++)
+    {
+        if (coordinates[0][i]<minx)
+        {
+            minx=coordinates[0][i];
+        };
+        if (coordinates[0][i]>maxx)
+        {
+            maxx=coordinates[0][i];
+        };
+        if (coordinates[1][i]<miny)
+        {
+            miny=coordinates[1][i];
+        };
+        if (coordinates[1][i]>maxy)
+        {
+            maxy=coordinates[1][i];
+        };
+    };
+    //cout <<minx<<endl<<maxx<<endl<<miny<<endl<<maxy<<endl;
+
+    SetWindow(minx-1,maxx+1,miny-1,maxy+1);//Graph.h
+    SetColor(250,250,250);//Graph.h
+    xyLine(coordinates[0][n],coordinates[1][n],1,1);//Graph.h
+    for (int i =0;i<n-1;i++)
+    {
+                SetPoint(coordinates[0][i],coordinates[1][i]);//Graph.h
+        SetColor(255,0,0);//Graph.h
+        Line(coordinates[0][i+1],coordinates[1][i+1]);//Graph.h
+    };
+    SetPoint(coordinates[0][n-1],coordinates[1][n-1]);//Graph.h
+    SetColor(255,0,0);//Graph.h
+    Line(coordinates[0][0],coordinates[1][0]);//Graph.h
+    CloseWindow("StrangeThings.bmp");//Graph.h
+    int cotmaxx=0;
+    int cotminx=0;
+    int cotmaxy=0;
+    int cotminy=0;
+    int intersection = 0;
+    for (int i =0; i<n-1;i++)
+    {
+        cout <<"Прямая "<<i<<endl;
+        for (double j =coordinates[0][n];j<maxx;j+=0.001)
+        {
+            //cout <<"по maxx "<<abs((j-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(coordinates[1][n]-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((j-coordinates[0][i])*(coordinates[1][i+1]-coordinates[1][i])-(coordinates[1][n]-coordinates[1][i])*(coordinates[0][i+1]-coordinates[0][i]))<0.01)
+            {
+                intersection++;
+            };
+        };
+    };
+
+        if (intersection==0)
+            {
+                cotmaxx++;
+            };
+        intersection = 0;
+    for (int i =0; i<n-1;i++)
+    {
+        cout <<endl;
+        cout <<"Прямая "<<i<<endl;
+        for (double j =coordinates[0][n];j>minx;j-=0.001)
+        {
+            //cout <<"по minx "<<abs((j-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(coordinates[1][n]-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((j-coordinates[0][i])*(coordinates[1][i+1]-coordinates[1][i])-(coordinates[1][n]-coordinates[1][i])*(coordinates[0][i+1]-coordinates[0][i]))<0.01)
+            {
+                intersection++;
+            };
+        };
+    };
+        if (intersection==0)
+            {
+                cotminx++;
+            };
+        intersection = 0;
+            for (int i =0; i<n-1;i++)
+    {
+        cout <<endl;
+        cout <<"Прямая "<<i<<endl;
+        for (double j =coordinates[1][n];j<maxy;j+=0.001)
+        {
+            //cout <<"по maxy "<<abs((coordinates[0][n]-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(j-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((coordinates[0][n]-coordinates[0][i])*(coordinates[1][i+1]-coordinates[1][i])-(j-coordinates[1][i])*(coordinates[0][i+1]-coordinates[0][i]))<0.01)
+            {
+                intersection++;
+            };
+        };
+    };
+        if (intersection==0)
+            {
+                cotmaxy++;
+            }
+        intersection = 0;
+            for (int i =0; i<n-1;i++)
+    {
+        cout <<endl;
+        cout <<"Прямая "<<i<<endl;
+        for (double j =coordinates[1][n];j>miny;j-=0.001)
+        {
+            //cout <<"по miny "<<abs((coordinates[0][n]-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(j-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((coordinates[0][n]-coordinates[0][i])*(coordinates[1][i+1]-coordinates[1][i])-(j-coordinates[1][i])*(coordinates[0][i+1]-coordinates[0][i]))<0.01)
+            {
+                intersection++;
+            };
+        };
+    };
+            if (intersection==0)
+            {
+                cotminy++;
+            };
+//--Отдельная проверка последней прямой--
+cout <<"Прямая "<<n<<endl;
+            for (double j =coordinates[0][n];j<maxx;j+=0.001)
+        {
+            //cout <<"по maxx "<<abs((j-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(coordinates[1][n]-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((j-coordinates[0][n-1])*(coordinates[1][0]-coordinates[1][n-1])-(coordinates[1][n]-coordinates[1][n-1])*(coordinates[0][0]-coordinates[0][n-1]))<0.01)
+            {
+                intersection++;
+            };
+        };
+
+        if (intersection==0)
+            {
+                cotmaxx++;
+            };
+        intersection = 0;
+
+        cout <<endl;
+        //cout <<"Прямая "<<i<<endl;
+        for (double j =coordinates[0][n];j>minx;j-=0.001)
+        {
+            //cout <<"по minx "<<abs((j-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(coordinates[1][n]-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((j-coordinates[0][n-1])*(coordinates[1][0]-coordinates[1][n-1])-(coordinates[1][n]-coordinates[1][n-1])*(coordinates[0][0]-coordinates[0][n-1]))<0.01)
+            {
+                intersection++;
+            };
+        };
+        if (intersection==0)
+            {
+                cotminx++;
+            };
+        intersection = 0;
+        cout <<endl;
+        //cout <<"Прямая "<<i<<endl;
+        for (double j =coordinates[1][n];j<maxy;j+=0.001)
+        {
+            //cout <<"по maxy "<<abs((coordinates[0][n]-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(j-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((coordinates[0][n]-coordinates[0][n-1])*(coordinates[1][0]-coordinates[1][n-1])-(j-coordinates[1][n-1])*(coordinates[0][0]-coordinates[0][n-1]))<0.01)
+            {
+                intersection++;
+            };
+        };
+        if (intersection==0)
+            {
+                cotmaxy++;
+            }
+        intersection = 0;
+
+        //cout <<endl;
+        //cout <<"Прямая "<<i<<endl;
+        for (double j =coordinates[1][n];j>miny;j-=0.001)
+        {
+            //cout <<"по miny "<<abs((coordinates[0][n]-coordinates[0][i])/(coordinates[0][i+1]-coordinates[i][0])-(j-coordinates[1][i])/(coordinates[1][i+1]-coordinates[1][i]));
+            if (abs((coordinates[0][n]-coordinates[0][n-1])*(coordinates[1][0]-coordinates[1][n-1])-(j-coordinates[1][n-1])*(coordinates[0][0]-coordinates[0][n-1]))<0.01)
+            {
+                intersection++;
+            };
+        };
+            if (intersection==0)
+            {
+                cotminy++;
+            };
+            if (cotmaxx%2==0||cotmaxy%2==0||cotminx%2==0||cotminy%2==0)
+            {
+                cout <<"Точка лежит вне многоугольника"<<endl;
+            };
+                cout <<"cotmaxx:"<<cotmaxx<<endl;
+                cout <<"cotmaxy:"<<cotmaxy<<endl;
+                cout <<"cotminx:"<<cotminx<<endl;
+                cout <<"cotminy:"<<cotminy<<endl;
+
+    return 0;
+}
